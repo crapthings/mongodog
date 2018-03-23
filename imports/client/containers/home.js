@@ -4,10 +4,8 @@ const tracker = props => {
   const ready = Meteor.subscribe('profiles').ready()
   if (!ready) return { ready }
 
-  const profiles = Profiles.find().fetch()
-  const users = Users.find().fetch()
-  console.log(users)
-  return { profiles, users }
+  const profiles = Profiles.find().map(({ data }) => JSON.parse(data))
+  return { profiles }
 }
 
 export default withTracker(tracker)(Loading(Home))

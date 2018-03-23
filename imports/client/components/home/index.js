@@ -1,9 +1,41 @@
-export default ({ profiles, users }) => <>
-  {profiles.map((profile, profileIdx) => <div key={profileIdx}>
-    {JSON.stringify(profile)}
-  </div>)}
-
-  {users.map(user => <div key={user._id}>
-    {JSON.stringify(user)}
-  </div>)}
+export default ({ profiles }) => <>
+  <table>
+    <thead>
+      <tr>
+        <th>操作</th>
+        <th>类型</th>
+        <th>时间</th>
+        <th>数据集</th>
+        <th>查询时间</th>
+        <th>查询索引</th>
+        <th>查询数量</th>
+        <th>查询容量</th>
+        <th>结果字节</th>
+      </tr>
+    </thead>
+    <tbody>
+      {profiles.map(({
+        _id,
+        op,
+        protocol,
+        createdAt,
+        name,
+        millis,
+        keysExamined,
+        nreturned,
+        prettyResponseLength,
+        responseLength,
+      }) => <tr key={_id}>
+        <td>{op}</td>
+        <td>{protocol}</td>
+        <td>{createdAt}</td>
+        <td>{name}</td>
+        <td>{millis} ms</td>
+        <td>{keysExamined}</td>
+        <td>{nreturned}</td>
+        <td>{prettyResponseLength}</td>
+        <td>{responseLength}</td>
+      </tr>)}
+    </tbody>
+  </table>
 </>
