@@ -26,6 +26,7 @@ Meteor.publish('profiles', function () {
     profile.name = profile.ns.replace(`${DATABASE_NAME}.`, '')
     profile.createdAt = moment(profile.ts).format('YYYY.M.D H:m:s')
     profile.prettyResponseLength = pretty(profile.responseLength)
+    profile.querystr = profile.query ? JSON.stringify(profile.query) : ''
     this.added('system.profile', _id, { data: JSON.stringify(profile) })
   })
 
