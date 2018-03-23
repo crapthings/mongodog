@@ -1,4 +1,4 @@
 import './utils'
-import './configurations'
+// import './configurations'
 import './publications'
 import './accounts'
