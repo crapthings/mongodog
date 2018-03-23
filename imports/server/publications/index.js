@@ -12,6 +12,8 @@ const QUERY_BLACKLIST = {
 }
 
 Meteor.publish('profiles', function () {
+  if (!this.userId) return this.stop()
+
   const selector = {
     // op: { $in: ['query', 'getmore'] },
     ns: { $nin: COLLECTION_BLACKLIST },
