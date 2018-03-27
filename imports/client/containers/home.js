@@ -4,8 +4,11 @@ const tracker = props => {
   const ready = Meteor.subscribe('profiles').ready()
   if (!ready) return { ready }
 
-  const { data } = Profiles.findOne({}, { sort: { updatedAt: -1 } })
-  const profiles = JSON.parse(data)
+  const profiles = Profiles.find({}, { sort: { ts: -1 } }).map(profile => {
+    profile.data = JSON.parse(profile.data)
+    return profile
+  })
+
   return { profiles }
 }
 
