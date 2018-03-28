@@ -5,8 +5,12 @@ const tracker = props => {
   if (!ready) return { ready }
 
   const profiles = Profiles.find({}, { sort: { ts: -1 } }).map(profile => {
-    profile.data = JSON.parse(profile.data)
-    return profile
+    const data = JSON.parse(profile.data)
+    data.from = profile.from
+    data._id = profile._id
+    console.log(data._id)
+    console.log(data)
+    return data
   })
 
   return { profiles }
